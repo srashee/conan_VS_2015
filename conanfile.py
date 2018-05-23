@@ -9,12 +9,12 @@ class Hello(ConanFile):
     exports_sources = "ConanHelloVS/*", "*.vcxproj*", "*.sln*"
 
     def build(self):
-    ¦   msbuild = MSBuild(self)
-    ¦   msbuild.build("ConanHelloVS.sln")
+        msbuild = MSBuild(self)
+        msbuild.build("ConanHelloVS.sln")
 
     def package(self):
-    ¦   self.copy("*.h", dst="include", src="ConanHelloVS")
-    ¦   self.copy("*.dll", dst="dll", keep_path=False)
+        self.copy("*.h", dst="include", src="ConanHelloVS")
+        self.copy("*.dll", dst="dll", keep_path=False)
 
     def package_info(self):
-    ¦   self.cpp_info.libs = ["ConanHelloVS"]
+        self.cpp_info.libs = ["ConanHelloVS"]
