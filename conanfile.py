@@ -10,7 +10,7 @@ class Hello(ConanFile):
 
     def build(self):
         msbuild = MSBuild(self)
-        msbuild.build("ConanHelloVS.sln")
+        msbuild.build("ConanHelloVS.sln", platforms={"x86": "Win32"})
 
     def package(self):
         self.copy("*.h", dst="include", src="ConanHelloVS")
