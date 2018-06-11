@@ -1,4 +1,5 @@
 from conans import ConanFile, MSBuild, AutoToolsBuildEnvironment, tools
+import platform
 ##################################################################
 #                CROSS-COMPILATION CONANFILE                     #
 ##################################################################
@@ -22,7 +23,10 @@ class Hello(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     exports_sources = "ConanHelloVS/*", "*.vcxproj*", "*.sln*"
     generators = "visual_studio"
-    #requires = "Example/00.00.00@linux/release"
+    if platform.system() == "Windows":
+        requires = "Example/00.00.00@windows/release"
+    else:
+        requires = "Example/00.00.00@linux/releae"
 
     def imports(self):
         self.copy("*.so", src="bin", dst="bin")
