@@ -42,6 +42,9 @@ class Hello(ConanFile):
     # The Linux build is built using a makefile with the
     # Autotools helper. It exports the include path to what
     # was specified in 'requires'
+    # This assumes that you will call build from the same
+    # directory as the conanfile. Otherwise the self.run
+    # command will not work properly.
     def build(self):
         if self.settings.os == "Windows":
             msbuild = MSBuild(self)
